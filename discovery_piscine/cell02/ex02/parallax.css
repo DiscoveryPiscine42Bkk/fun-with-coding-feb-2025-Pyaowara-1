@@ -1,0 +1,26 @@
+body, html {
+    margin: 0;
+    color: white;
+    filter: saturate(0);
+}
+.parallax {
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+}
+.parallax-1 {
+    background-image: url('https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg');
+}
+.parallax-2 {
+    background-image: url('https://cdn.britannica.com/70/234870-050-D4D024BB/Orange-colored-cat-yawns-displaying-teeth.jpg');
+}
+.content {
+    padding: 200px;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
