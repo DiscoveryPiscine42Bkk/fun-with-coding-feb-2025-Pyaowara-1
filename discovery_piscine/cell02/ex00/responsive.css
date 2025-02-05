@@ -1,0 +1,17 @@
+body{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+p{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.container{
+    border: solid 1px;
+    border-color: black;
+}
+@media(max-width: 768px){
+    body{
+    grid-template-columns: 1fr;
+}
+}
