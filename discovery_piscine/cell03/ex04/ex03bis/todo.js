@@ -45,6 +45,7 @@ $(document).ready(function () {
     if (todoCookie) {
         TODO = JSON.parse(todoCookie);
         nextId = TODO.length > 0 ? Math.max(...TODO.map(item => item.id)) + 1 : 0;
+        console.log(TODO.map(item => item.id));
         update();
     }
 }
