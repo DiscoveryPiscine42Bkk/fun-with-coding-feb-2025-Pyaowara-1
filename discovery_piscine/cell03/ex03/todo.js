@@ -1,42 +1,54 @@
-const list = document.getElementById("ft_list")
-let TodoList = []
+const list = document.getElementById("ft_list");
+let TODO = [];
+let nextId = 0;
 
-function createTodo(text) {
-    const element = document.createElement('div')
-    element.classList.add('todo')
-    element.innerHTML = '<p>' + text + '</p>' + '<button onclick="remove(' + "'" + text + "'" + ')">Delete</button>'
+function createTodo(text, id) {
+    const element = document.createElement('div');
+    element.classList.add('todo');
+    element.innerHTML = `<p>${text}</p><button onclick="remove(${id})">Delete</button>`;
     return element;
 }
 
-function render() {
-    list.innerHTML = ''
-    for (let index = 0; index < TodoList.length; index++) {
-        const element = TodoList[index];
-        list.innerHTML += createTodo(element).outerHTML
+function update() {
+    list.innerHTML = '';
+    for (let index = 0; index < TODO.length; index++) {
+        const item = TODO[index];
+        list.appendChild(createTodo(item.text, item.id));
     }
-    document.cookie = JSON.stringify(TodoList)
+    document.cookie = "todos=" + JSON.stringify(TODO) + ";path=/";
+    // console.log(TODO)
 }
 
 function newTodo() {
-    let name = prompt("Name the todo.")
+    let name = prompt("Name the todo.");
     if (name.length > 0) {
-        TodoList.unshift(name)
-        render()
+        TODO.unshift({ id: nextId++, text: name });
+        update();
     }
 }
 
-function remove(text) {
-    let yes = confirm('Are you sure to remove.')
+function remove(id) {
+    let yes = confirm('Are you sure to remove?');
     if (yes) {
-        TodoList = TodoList.filter((a) => a != text)
-        render()
+        TODO = TODO.filter((item) => item.id !== id);
+        update();
     }
 }
 
 window.onload = function () {
-    let save = document.cookie;
-    if (save.length > 0) {
-        TodoList = JSON.parse(save)
-        render()
+    const cookies = document.cookie.split(';');
+    let todoCookie = null;
+    for (const cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'todos') {
+            todoCookie = value;
+            break;
+        }
     }
-}
+    if (todoCookie) {
+        TODO = JSON.parse(todoCookie);
+        nextId = TODO.length > 0 ? Math.max(...TODO.map(item => item.id)) + 1 : 0;
+        update();
+    }
+
+};
