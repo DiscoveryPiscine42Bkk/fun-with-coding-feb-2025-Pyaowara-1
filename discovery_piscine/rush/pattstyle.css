@@ -1,0 +1,50 @@
+:root {
+    --primary-yellow: #FFD700;
+    --secondary-yellow: #FFC107;
+    --dark-yellow: #B8860B;
+}
+
+.navbar {
+    background-color: var(--primary-yellow);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand, .nav-link {
+    color: #000;
+    font-weight: 500;
+}
+
+.nav-link:hover, .navbar-brand:hover {
+    color: var(--dark-yellow);
+}
+
+.section-title {
+    color: var(--dark-yellow);
+    border-bottom: 3px solid var(--secondary-yellow);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.resume-section {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+.resume-section:nth-child(even) {
+    background-color: #FFFbF0;
+}
+
+.experience-item {
+    border-left: 3px solid var(--secondary-yellow);
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.experience-date {
+    color: var(--dark-yellow);
+    font-weight: 500;
+}
+
+.contacts{
+    display: flex;
+}
